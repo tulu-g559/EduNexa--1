@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { motion } from "framer-motion"
-import { FileText, Sparkles } from "lucide-react"
-import { FloatingPaper } from "@/components/floating-paper"
-import { RoboAnimation } from "@/components/robo-animation"
+import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+import { FileText, Sparkles } from "lucide-react";
+import { FloatingPaper } from "@/components/floating-paper";
+import { RoboAnimation } from "@/components/robo-animation";
 
 export default function Hero() {
   return (
@@ -59,6 +59,5 @@ export default function Hero() {
         <RoboAnimation />
       </div>
     </div>
-  )
+  );
 }
-

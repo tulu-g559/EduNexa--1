@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button"
 import { Bot, Menu } from "lucide-react"
 import { motion } from "framer-motion"
 import Link from "next/link"
-import type React from "react" // Added import for React
 
 export default function Navbar() {
   return (
@@ -39,12 +38,11 @@ export default function Navbar() {
   )
 }
 
-function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
+function NavLink(props) {
   return (
-    <Link href={href} className="text-gray-300 hover:text-white transition-colors relative group">
-      {children}
+    <Link href={props.href} className="text-gray-300 hover:text-white transition-colors relative group">
+      {props.children}
       <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all group-hover:w-full" />
     </Link>
   )
 }
-

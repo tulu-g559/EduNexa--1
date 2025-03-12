@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Bot } from "lucide-react"
+import { motion } from "framer-motion";
+import { Bot } from "lucide-react";
 
 export function RoboAnimation() {
   return (
@@ -13,7 +13,7 @@ export function RoboAnimation() {
         }}
         transition={{
           duration: 4,
-          repeat: Number.POSITIVE_INFINITY,
+          repeat: Infinity,
           ease: "easeInOut",
         }}
       >
@@ -26,7 +26,7 @@ export function RoboAnimation() {
             }}
             transition={{
               duration: 4,
-              repeat: Number.POSITIVE_INFINITY,
+              repeat: Infinity,
               ease: "easeInOut",
             }}
           />
@@ -34,6 +34,5 @@ export function RoboAnimation() {
         </div>
       </motion.div>
     </div>
-  )
+  );
 }
-
