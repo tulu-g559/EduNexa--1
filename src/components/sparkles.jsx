@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useMousePosition } from "@/lib/hooks/use-mouse-position";
+import { useMousePosition } from "../lib/hooks/use-mouse-position";
 
 export const SparklesCore = ({
   id = "tsparticles",
