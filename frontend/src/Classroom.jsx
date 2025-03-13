@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { SparklesCore } from "./components/home_page/sparkles"; // Assuming you have tsparticles setup
+import { SparklesCore } from "./components/home_page/sparkles";
 
 const Classroom = () => {
   const [darkMode, setDarkMode] = useState(true);
@@ -46,7 +46,7 @@ const Classroom = () => {
             href="https://meet.google.com/xyz-abc-123"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-blue-600 text-white py-2 px-6 rounded-lg hover:bg-blue-700 text-xl"
+            className="bg-purple-600 text-white py-2 px-6 rounded-lg hover:bg-purple-700 text-xl"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.2 }}
