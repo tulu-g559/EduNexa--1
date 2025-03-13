@@ -20,8 +20,10 @@ export default function Navbar() {
       <div className="hidden md:flex items-center space-x-8">
         <NavLink to="/">Home</NavLink>
         <NavLink to="/how-it-works">About</NavLink>
-        <NavLink to="/examples">Let's Study</NavLink>
+        {/* I have added classroom here istead of /classroom for now */}
+        <NavLink to="/classroom">Let's Study</NavLink>
         <NavLink to="/game">Gamification</NavLink> 
+        {/* <NavLink to="/classroom">Classroom</NavLink>  */}
       </div>
 
       <div className="hidden md:flex items-center space-x-4">

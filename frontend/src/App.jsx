@@ -3,6 +3,7 @@ import Hero from "./components/home_page/hero";
 import Navbar from "./components/home_page/navbar";
 import { SparklesCore } from "./components/home_page/sparkles";
 import Game from "./game.jsx";
+import Classroom from "./Classroom.jsx";
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Hero />} />
             <Route path="/game" element={<Game />} />
+            <Route path="/classroom" element={<Classroom />} />
           </Routes>
         </div>
       </main>
