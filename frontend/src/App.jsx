@@ -9,6 +9,7 @@ import Leaderboard from "./components/game_page/leaderboard.jsx";
 import DailyChallenges from "./components/game_page/DailyChallenges.jsx";
 import NotFound from "./components/404/404.jsx";
 import UnderConstruction from "../src/components/404/UnderConstruction.jsx";
+import Classroom from "./Classroom.jsx";
 
 export default function App() {
   const location = useLocation(); // Get the current route
@@ -49,6 +50,8 @@ export default function App() {
             <Route path="/leaderboard" element={<Leaderboard />} />
             <Route path="/daily-challenges" element={<DailyChallenges />} />
             <Route path="/under-construction" element={<UnderConstruction />} />
+            <Route path="/classroom" element={<Classroom />} />
+            
             <Route path="/404" element={<NotFound />} />
             {/* Catch all other routes and redirect to 404 */}
             <Route path="*" element={<Navigate to="/404" replace />} />

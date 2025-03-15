@@ -22,6 +22,7 @@ export default function Navbar() {
         <NavLink to="/">Home</NavLink>
         <NavLink to="/how-it-works">About</NavLink>
         <NavLink to="/examples">Let's Study</NavLink>
+        <NavLink to="/classroom">Classroom</NavLink>
         <NavLink to="/under-construction">AI-Tutor</NavLink>
         <NavLink to="/game">Gamification</NavLink> 
       </div>
