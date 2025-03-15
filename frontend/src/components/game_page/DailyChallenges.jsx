@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle, Gift, X } from "lucide-react";
+import { useNavigate } from "react-router-dom"; 
 
-export default function DailyChallenges({ onBack }) {
+export default function DailyChallenges() {
+  const navigate = useNavigate(); 
+
   const [challenges, setChallenges] = useState([
     { id: 1, title: "Answer 5 Questions", progress: 3, total: 5, completed: false },
     { id: 2, title: "Win 3 Rounds", progress: 3, total: 3, completed: true },
@@ -12,7 +15,7 @@ export default function DailyChallenges({ onBack }) {
   return (
     <div className="h-screen w-full flex flex-col items-center justify-center bg-black text-white overflow-y-auto relative">
       {/* Back Button */}
-      <button onClick={onBack} className="absolute top-5 left-5 p-2 bg-yellow-500 hover:bg-yellow-400 rounded-full transition">
+      <button onClick={() => navigate(-1)} className="absolute top-5 left-5 p-2 bg-yellow-500 hover:bg-yellow-400 rounded-full transition">
         <X className="w-6 h-6 text-black" />
       </button>
 
@@ -34,32 +37,23 @@ export default function DailyChallenges({ onBack }) {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className={`p-4 rounded-lg shadow-lg relative ${
-              challenge.completed ? "bg-green-600" : "bg-gray-800"
-            }`}
+            className={`p-4 rounded-lg shadow-lg relative ${challenge.completed ? "bg-green-600" : "bg-gray-800"}`}
           >
             {/* Challenge Title */}
             <h2 className="text-lg font-semibold">{challenge.title}</h2>
 
             {/* Progress Bar */}
             <div className="w-full bg-gray-700 h-3 rounded-full mt-2">
-              <div
-                className={`h-full ${
-                  challenge.completed ? "bg-yellow-400" : "bg-blue-500"
-                } rounded-full transition-all`}
-                style={{ width: `${(challenge.progress / challenge.total) * 100}%` }}
-              ></div>
+              <div className={`h-full ${challenge.completed ? "bg-yellow-400" : "bg-blue-500"} rounded-full transition-all`} 
+                   style={{ width: `${(challenge.progress / challenge.total) * 100}%` }}>
+              </div>
             </div>
 
             {/* Progress Text */}
-            <p className="text-sm mt-2">
-              {challenge.progress}/{challenge.total}
-            </p>
+            <p className="text-sm mt-2">{challenge.progress}/{challenge.total}</p>
 
             {/* Completion Icon */}
-            {challenge.completed && (
-              <CheckCircle className="absolute top-2 right-2 text-yellow-400 w-6 h-6" />
-            )}
+            {challenge.completed && <CheckCircle className="absolute top-2 right-2 text-yellow-400 w-6 h-6" />}
           </motion.div>
         ))}
       </div>
