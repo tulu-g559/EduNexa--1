@@ -14,13 +14,15 @@ export default function Navbar() {
     >
       <Link to="/" className="flex items-center space-x-2">
         <img src="../src/components/home_page/logo.png" alt="EduNexa Logo" className="w-12 h-12" />
-        <span className="text-white font-medium text-xl">EduNexa</span>
+        <span className="text-white font-medium text-xl m-0">Edu</span>
+        <span className="text-purple-500 font-medium text-xl">Nexa</span>
       </Link>
 
       <div className="hidden md:flex items-center space-x-8">
         <NavLink to="/">Home</NavLink>
         <NavLink to="/how-it-works">About</NavLink>
         <NavLink to="/examples">Let's Study</NavLink>
+        <NavLink to="/under-construction">AI-Tutor</NavLink>
         <NavLink to="/game">Gamification</NavLink> 
       </div>
 

@@ -1,7 +1,10 @@
 import { motion } from "framer-motion";
 import { Bot, X } from "lucide-react";
+import { useNavigate } from "react-router-dom"; // ✅ Import useNavigate
 
-export default function Leaderboard({ onBack }) {
+export default function Leaderboard() {
+  const navigate = useNavigate(); // ✅ Initialize navigate function
+
   const users = [
     { id: 1, name: "Alice", points: 1200 },
     { id: 2, name: "Bob", points: 1100 },
@@ -12,13 +15,18 @@ export default function Leaderboard({ onBack }) {
 
   return (
     <div className="h-screen w-full flex flex-col items-center justify-center bg-black text-white overflow-y-auto relative">
-      {/* Back Button (Yellow) */}
-      <button onClick={onBack} className="absolute top-5 left-5 p-2 bg-yellow-500 hover:bg-yellow-400 rounded-full transition">
+      {/* Back Button */}
+      <button onClick={() => navigate(-1)} className="absolute top-5 left-5 p-2 bg-yellow-500 hover:bg-yellow-400 rounded-full transition">
         <X className="w-6 h-6 text-black" />
       </button>
 
       {/* Title */}
-      <motion.h1 initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="text-4xl font-bold mb-6">
+      <motion.h1 
+        initial={{ opacity: 0, y: -20 }} 
+        animate={{ opacity: 1, y: 0 }} 
+        transition={{ duration: 0.8 }} 
+        className="text-4xl font-bold mb-6"
+      >
         🏆 Leaderboard
       </motion.h1>
 
