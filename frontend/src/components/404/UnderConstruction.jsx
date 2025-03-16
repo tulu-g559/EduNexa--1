@@ -6,14 +6,14 @@ import { useRef } from "react";
 
 // 🏗️ 3D Construction Worker Component
 function ConstructionWorker() {
-    const { scene } = useGLTF("../../../src/components/404/Construction.glb"); // Load model from public folder
+    const { scene } = useGLTF("../../../src/components/404/Construction.glb");
     const workerRef = useRef();
   
     // Animate the worker's hammering action
     useFrame(() => {
       if (workerRef.current) {
-        workerRef.current.rotation.y += 0.01; // Slight rotation for realism
-        workerRef.current.children[1].rotation.x = Math.sin(Date.now() * 0.005) * 0.3; // Simulate hammering
+        workerRef.current.rotation.y += 0.01;
+        workerRef.current.children[1].rotation.x = Math.sin(Date.now() * 0.005) * 0.3;
       }
     });
   
@@ -21,8 +21,8 @@ function ConstructionWorker() {
       <primitive 
         object={scene} 
         ref={workerRef} 
-        position={[0, 1, 0]} // 🔼 Move slightly up (-1 → -0.5)
-        scale={3} // 🔼 Increase size (default 1 → now 2x bigger)
+        position={[0, 1, 0]}
+        scale={3} 
       />
     );
   }

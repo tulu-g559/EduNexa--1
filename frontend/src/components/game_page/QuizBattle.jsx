@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { XCircle } from "lucide-react";
 
 export default function QuizBattle() {
-  const navigate = useNavigate(); // Initialize navigate function
+  const navigate = useNavigate();
   const [question, setQuestion] = useState(null);
   const [loading, setLoading] = useState(true);
   const [topics] = useState(["Coding", "Algorithm", "Physics", "Math"]);
@@ -162,7 +162,7 @@ export default function QuizBattle() {
 
       {/* End Quiz Button - Navigates to a results page */}
       <button
-        onClick={() => navigate("/results")} // Change to your results route
+        onClick={() => navigate("/results")}
         className="mt-6 p-3 bg-blue-500 rounded-lg hover:bg-blue-400"
       >
         End Quiz
