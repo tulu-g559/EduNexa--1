@@ -1,6 +1,6 @@
 "use client";
 
-import { Bot, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import { motion } from "framer-motion";
 import Button from "./button"; 
 import { Link } from "react-router-dom";
@@ -13,22 +13,30 @@ export default function Navbar() {
       className="relative z-50 flex items-center justify-between px-6 py-4 backdrop-blur-sm border-b border-white/10"
     >
       <Link to="/" className="flex items-center space-x-2">
-        <img src="../src/components/home_page/logo.png" alt="EduNexa Logo" className="w-12 h-12" />
+        <img src="../../../images/logo.png" alt="EduNexa Logo" className="w-12 h-12" />
         <span className="text-white font-medium text-xl m-0">Edu</span>
         <span className="text-purple-500 font-medium text-xl">Nexa</span>
       </Link>
 
       <div className="hidden md:flex items-center space-x-8">
         <NavLink to="/">Home</NavLink>
-        <NavLink to="/how-it-works">About</NavLink>
-        <NavLink to="/examples">Let's Study</NavLink>
-        <NavLink to="/under-construction">AI-Tutor</NavLink>
+        <NavLink to="/about">About</NavLink>
+        <NavLink to="/Subjectlist">Let's Study</NavLink>
+        <NavLink to="/classroom">Classroom</NavLink>
+        <NavLink to="/chatbot">AI-Tutor</NavLink>
         <NavLink to="/game">Gamification</NavLink> 
       </div>
 
       <div className="hidden md:flex items-center space-x-4">
-        <Button>Sign In</Button>
+      <Link to="/signup">
+          <Button>Sign Up</Button>
+      </Link>
+      
+
+      <Link to="/login">
         <Button>Get Started</Button>
+      </Link>
+        
       </div>
 
       <Button className="md:hidden">

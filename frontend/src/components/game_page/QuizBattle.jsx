@@ -17,17 +17,19 @@ export default function QuizBattle() {
   const fetchQuiz = async () => {
     setLoading(true);
     try {
-      const response = await fetch("http://127.0.0.1:5001/game/generate_quiz", {
+      const response = await fetch("http://127.0.0.1:5000/game/generate_quiz", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ topic: selectedTopic }), // Ensure topic is sent
+        body: JSON.stringify({ topic: selectedTopic }),
       });
-
+  
+      console.log("Raw Response:", response);
+  
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-
+  
       const data = await response.json();
       console.log("Quiz Response:", data);
-
+  
       if (data.questions) {
         setQuestion(data.questions[0]);
       } else {
@@ -87,7 +89,7 @@ export default function QuizBattle() {
 
       {/* Back Button */}
       <button
-        onClick={() => navigate("/")} // Navigate to home or another page
+        onClick={() => navigate(-1)} // Navigate to home or another page
         className="absolute top-5 left-5 p-2 bg-yellow-500 hover:bg-yellow-400 rounded-full transition"
       >
         <XCircle className="w-6 h-6 text-black" />

@@ -18,10 +18,12 @@ export default function Hero() {
         <div className="max-w-4xl mx-auto text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
-              Transform Your Research with
+               Empower Your Learning with
+               
+    
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
                 {" "}
-                AI Power
+                AI Precision
               </span>
             </h1>
           </motion.div>
@@ -32,8 +34,7 @@ export default function Hero() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-gray-400 text-xl mb-8 max-w-2xl mx-auto"
           >
-            Upload your research papers and let our AI transform them into engaging presentations, podcasts, and visual
-            content.
+            Transform the way you study with intelligent tools that simplify, enhance, and personalize your learning experience.
           </motion.p>
 
           <motion.div
