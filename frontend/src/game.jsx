@@ -1,9 +1,8 @@
 "use client";
 
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { Sun, Trophy, Gamepad2, CheckSquare, Bot } from "lucide-react";
+import { Trophy, Gamepad2, CheckSquare, Bot } from "lucide-react";
 import { SparklesCore } from "./components/home_page/sparkles";
 
 const cards = [
@@ -13,14 +12,13 @@ const cards = [
 ];
 
 export default function GamifiedLearning() {
-  const [darkMode, setDarkMode] = useState(true);
 
   return (
-    <div className={`h-screen overflow-hidden flex flex-col relative transition-all ${darkMode ? "bg-black text-white" : "bg-gray-100 text-black"}`}>
+    <div className={`h-screen overflow-hidden flex flex-col relative transition-all `}>
       
       {/* Background Sparkles */}
       <div className="absolute inset-0 w-full h-full pointer-events-none">
-        <SparklesCore particleColor={darkMode ? "#FFFFFF" : "#000000"} />
+        <SparklesCore particleColor={"#000000"} />
       </div>
 
       {/* Main Content */}
