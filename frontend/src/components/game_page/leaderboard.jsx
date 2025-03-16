@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { Bot, X } from "lucide-react";
-import { useNavigate } from "react-router-dom"; // ✅ Import useNavigate
+import { useNavigate } from "react-router-dom";
 
 export default function Leaderboard() {
-  const navigate = useNavigate(); // ✅ Initialize navigate function
+  const navigate = useNavigate();
 
   const users = [
     { id: 1, name: "Alice", points: 1200 },

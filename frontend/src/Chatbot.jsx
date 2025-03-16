@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { FaRobot } from "react-icons/fa"; // Chatbot icon
-import { IoSend } from "react-icons/io5"; // Send icon
+import { FaRobot } from "react-icons/fa";
+import { IoSend } from "react-icons/io5";
 
 const Chatbot = () => {
   const [messages, setMessages] = useState([]);
@@ -9,7 +9,7 @@ const Chatbot = () => {
   const sendMessage = () => {
     if (input.trim() === "") return;
     setMessages([...messages, { text: input, sender: "user" }]);
-    setInput(""); // Clear input field
+    setInput("");
   };
 
   return (

@@ -11,8 +11,8 @@ const FloatingShape = ({ mousePos }) => {
   // Animate Shape Based on Mouse
   useFrame(() => {
     if (shapeRef.current) {
-      shapeRef.current.rotation.y = mousePos.x * Math.PI * 0.5; // Rotate based on X
-      shapeRef.current.rotation.x = mousePos.y * Math.PI * 0.5; // Rotate based on Y
+      shapeRef.current.rotation.y = mousePos.x * Math.PI * 0.5;
+      shapeRef.current.rotation.x = mousePos.y * Math.PI * 0.5;
     }
   });
 
@@ -30,8 +30,8 @@ export default function NotFound() {
   // Update Mouse Position
   const handleMouseMove = (event) => {
     setMousePos({
-      x: (event.clientX / window.innerWidth) * 2 - 1, // Normalize X (-1 to 1)
-      y: -(event.clientY / window.innerHeight) * 2 + 1, // Normalize Y (-1 to 1)
+      x: (event.clientX / window.innerWidth) * 2 - 1,
+      y: -(event.clientY / window.innerHeight) * 2 + 1,
     });
   };
 

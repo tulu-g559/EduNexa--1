@@ -3,9 +3,25 @@
 import { Menu } from "lucide-react";
 import { motion } from "framer-motion";
 import Button from "./button"; 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase/firebase.js";
 
-export default function Navbar() {
+export default function Navbar({ user, onLogout }) {
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      toast.success("Logout successful!");
+      onLogout();
+      navigate("/");
+    } catch (error) {
+      toast.error("Logout failed. Please try again.");
+    }
+  };
+
   return (
     <motion.nav
       initial={{ y: -100 }}
@@ -24,19 +40,17 @@ export default function Navbar() {
         <NavLink to="/Subjectlist">Let's Study</NavLink>
         <NavLink to="/classroom">Classroom</NavLink>
         <NavLink to="/chatbot">AI-Tutor</NavLink>
-        <NavLink to="/game">Gamification</NavLink> 
+        <NavLink to="/game">Gamification</NavLink>
       </div>
 
       <div className="hidden md:flex items-center space-x-4">
-      <Link to="/signup">
-          <Button>Sign Up</Button>
-      </Link>
-      
-
-      <Link to="/login">
-        <Button>Get Started</Button>
-      </Link>
-        
+        {user ? (
+          <Button onClick={handleLogout}>Logout</Button>
+        ) : (
+          <Link to="/login">
+            <Button>Get Started</Button>
+          </Link>
+        )}
       </div>
 
       <Button className="md:hidden">
