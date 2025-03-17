@@ -4,13 +4,13 @@ import {getFirestore} from "firebase/firestore";
 
 // Actual configuration details removed due to security reasons
 const firebaseConfig = {
-  apiKey: you_api_key,
-  authDomain: your_authDomain,
-  projectId: your_projectId,
-  storageBucket: your_storageBucket,
-  messagingSenderId: your_messagingSenderId,
-  appId: your_appId,
-  measurementId: your_measurementId,
+  apiKey: "you_api_key",
+  authDomain: "your_authDomain",
+  projectId: "your_projectId",
+  storageBucket: "your_storageBucket",
+  messagingSenderId: "your_messagingSenderId",
+  appId: "your_appId",
+  measurementId: "your_measurementId",
 };
 
 
