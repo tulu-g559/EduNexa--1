@@ -123,7 +123,7 @@ cd frontend
 npm install
 npm run dev
 ```
-Access EduNexa backend at **[http://localhost:5173/](http://localhost:5173/)**  
+Access EduNexa frontend at **[http://localhost:5173/](http://localhost:5173/)**  
 
 ## ⚠️ Caution  
 
