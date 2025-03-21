@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { FaRobot } from "react-icons/fa";
 import { IoSend } from "react-icons/io5";
-
+import {useSelector} from "react-redux"
 
 const formatText = (text) => {
   // Bold: **bold** or __bold__
@@ -39,7 +39,7 @@ const formatText = (text) => {
 
 const Chatbot = () => {
 
-  
+  const {user} = useSelector(state => state.auth)
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [typing, setTyping] = useState(false);
@@ -68,7 +68,9 @@ const Chatbot = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ question: userQuery }),
+        body: JSON.stringify({
+          user_id : user.uid, 
+          question: userQuery }),
       });
 
       const data = await response.json();

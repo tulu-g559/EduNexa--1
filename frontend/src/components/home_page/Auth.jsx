@@ -67,6 +67,8 @@ const AuthPage = () => {
             await setDoc(userRef, {
               email: user.email,
               username: username,
+              point: 10,
+              limit: 10,
             });
 
             dispatch(loginSuccess(user));

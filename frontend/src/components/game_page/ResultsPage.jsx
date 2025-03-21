@@ -1,18 +1,54 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { db } from "../../firebase/firebase"; // Import Firestore database
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { useSelector } from "react-redux";
 
 export default function ResultsPage() {
   const navigate = useNavigate();
   const location = useLocation();
+  const user = useSelector((state) => state.auth.user); // Use Redux to get the user
   const { score } = location.state || { score: 0 }; // Default score is 0 if not provided
 
-  // Button to restart the quiz or go home
+  const [rewardPoints, setRewardPoints] = useState(0);
+
+  // Retrieve and update reward points in Firestore
+  useEffect(() => {
+    const updatePoints = async () => {
+      if (user) {
+        try {
+          const userRef = doc(db, "users", user.uid);
+          const userSnap = await getDoc(userRef);
+          const storedPoints = userSnap.exists() ? userSnap.data().point || 0 : 0;
+          const newTotal = storedPoints + score;
+          setRewardPoints(newTotal);
+
+          await updateDoc(userRef, {
+            point: newTotal,
+          });
+        } catch (error) {
+          console.error("Error updating reward points in Firestore:", error);
+        }
+      }
+    };
+
+    updatePoints();
+  }, [score, user]);
+
+  // Restart Quiz
   const handleRestart = () => {
     navigate("/quiz-battle"); // Go back to quiz page
   };
 
   return (
-    <div className="h-screen flex flex-col items-center justify-center bg-black text-white p-4">
+    <div className="h-screen flex flex-col items-center justify-center bg-black text-white p-4 relative">
+      {/* Total Reward Points in Top Right Corner */}
+      <div className="absolute top-4 right-4 bg-gray-800 p-2 rounded-lg text-center">
+        <h2 className="text-lg font-semibold">Total Reward Points</h2>
+        <p className="text-2xl font-bold text-green-400">{rewardPoints}</p>
+      </div>
+
       {/* Results Header */}
       <motion.h1
         initial={{ opacity: 0, y: -50 }}
@@ -24,9 +60,15 @@ export default function ResultsPage() {
       </motion.h1>
 
       {/* Player Score */}
-      <div className="bg-gray-800 p-6 rounded-lg text-center mb-8">
+      <div className="bg-gray-800 p-6 rounded-lg text-center mb-4">
         <h2 className="text-lg font-semibold">Your Score</h2>
         <p className="text-3xl font-bold text-yellow-400">{score}</p>
+      </div>
+
+      {/* Reward Points */}
+      <div className="bg-gray-700 p-6 rounded-lg text-center mb-8">
+        <h2 className="text-lg font-semibold">Total Reward Points</h2>
+        <p className="text-3xl font-bold text-green-400">{rewardPoints}</p>
       </div>
 
       {/* Message Based on Score */}

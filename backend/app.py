@@ -1,4 +1,6 @@
 import os, re 
+import firebase_admin
+from firebase_admin import credentials, firestore
 from dotenv import load_dotenv
 import google.generativeai as genai
 from flask import Flask, request, jsonify, send_from_directory
@@ -11,8 +13,17 @@ GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 # ✅ Configure Gemini API at the start
 genai.configure(api_key=GEMINI_API_KEY)
 
+# ✅ Initialize Firebase Admin SDK
+cred = credentials.Certificate("firebase.json")  # 🔥 Replace with your Firebase key file
+firebase_admin.initialize_app(cred)
+db = firestore.client()
+
 app = Flask(__name__, static_folder='../frontend/dist', static_url_path='/')
+# app = Flask(__name__)
 CORS(app)  
+
+# query_count = 0  
+QUERY_LIMIT = 5  # 🔥 Limit per session
 
 SYSTEM_PROMPT = """
     You are Edu, an AI-powered virtual tutor of EduNexa platform dedicated to helping students excel in their studies. Your primary role is to provide accurate, well-structured, and engaging educational assistance. Please follow these guidelines strictly:
@@ -117,26 +128,76 @@ def generate_quiz():
     
 
 # API Endpoint for AI tutor
+# @app.route("/ask", methods=["POST"])
+# def ask_ai():
+#     global query_count  # 🔥 Track queries server-side
+#     data = request.json
+#     question = data.get("question")
+
+#     if not question:
+#         return jsonify({"error": "No question provided"}), 400
+
+#     # 🔹 Check if query limit exceeded
+#     if query_count >= QUERY_LIMIT:
+#         return jsonify({"answer": "Your chat limit exceeds -- Enable your XPs"}), 403
+
+#     try:
+#         # ✅ Generate response from Gemini
+#         model = genai.GenerativeModel("gemini-1.5-flash")
+#         response = model.generate_content(f"{SYSTEM_PROMPT}\n\nUser: {question}\nAI:")
+
+#         # 🔥 Increment query count
+#         query_count += 1
+
+#         return jsonify({"answer": response.text if response else "Sorry, I couldn't generate a response."})
+
+#     except Exception as e:
+#         return jsonify({"error": str(e)}), 500
+
+
 @app.route("/ask", methods=["POST"])
 def ask_ai():
     data = request.json
+    user_id = data.get("user_id")  # ✅ Receiving Firebase UID from frontend
+
+    if not user_id:
+        return jsonify({"error": "User ID is required"}), 400
+
     question = data.get("question")
-    
     if not question:
         return jsonify({"error": "No question provided"}), 400
 
     try:
-        # Create a chat session with Gemini
-        model = genai.GenerativeModel("gemini-1.5-flash")  # Use latest Gemini model
+        # 🔥 Fetch user data from Firestore
+        user_ref = db.collection("users").document(user_id)
+        user_data = user_ref.get().to_dict()
+
+        if not user_data:
+            return jsonify({"error": "User not found"}), 404
+
+        user_limit = user_data.get("limit", 10)  # ✅ Default to 10 if missing
+
+        # 🔹 Check if user has remaining queries
+        if user_limit <= 0:
+            return jsonify({"answer": "Your chat limit exceeds -- Enable your XPs"}), 403
+
+        # ✅ Generate AI response using Gemini
+        model = genai.GenerativeModel("gemini-1.5-flash")
         response = model.generate_content(f"{SYSTEM_PROMPT}\n\nUser: {question}\nAI:")
-        
-        # Extract AI response
-        ai_response = response.text if response else "Sorry, I couldn't generate a response."
-        
-        return jsonify({"answer": ai_response})
+
+        # 🔥 Decrease limit and update Firestore
+        new_limit = user_limit - 1
+        user_ref.update({"limit": new_limit})
+
+        return jsonify({
+            "answer": response.text if response else "Sorry, I couldn't generate a response.",
+            "remaining_limit": new_limit  # Send updated limit to frontend
+        })
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+
 
 
 if __name__ == "__main__":
