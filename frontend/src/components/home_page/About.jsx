@@ -95,7 +95,7 @@ export default function About() {
             className="bg-gray-900 p-6 rounded-lg shadow-lg text-center w-64 hover:shadow-pink-500/50 transition-all"
           >
             <img
-              src="https://via.placeholder.com/120"
+              src="../../../images/archak1.jpg"
               alt="Team Member"
               className="rounded-full mx-auto mb-4 border-4 border-yellow-500"
             />
