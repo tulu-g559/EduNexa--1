@@ -2,18 +2,17 @@ import { initializeApp } from "firebase/app";
 import {getAuth} from "firebase/auth";
 import {getFirestore} from "firebase/firestore";
 
-// Actual configuration details removed due to security reasons
 const firebaseConfig = {
-  apiKey: "you_api_key",
-  authDomain: "your_authDomain",
-  projectId: "your_projectId",
-  storageBucket: "your_storageBucket",
-  messagingSenderId: "your_messagingSenderId",
-  appId: "your_appId",
-  measurementId: "your_measurementId",
+  apiKey: "AIzaSyDhO14yl5dRdHLcwRNxXHWDWdLqCZ_Ubqw",
+  authDomain: "edunexa-test.firebaseapp.com",
+  projectId: "edunexa-test",
+  storageBucket: "edunexa-test.firebasestorage.app",
+  messagingSenderId: "466675539193",
+  appId: "1:466675539193:web:af4db8877ff5492d535628",
+  measurementId: "G-K4MKNN3VXT",
 };
 
 
 export const app = initializeApp(firebaseConfig);
 export const auth=getAuth();
-export const db=getFirestore(app);
+export const db=getFirestore(app)

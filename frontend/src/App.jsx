@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginSuccess, loginFailure, logout } from "./redux/authSlice.js";
 import { toast } from "react-hot-toast";
 
+
 import Hero from "./components/home_page/hero";
 import Navbar from "./components/home_page/navbar";
 import { SparklesCore } from "./components/home_page/sparkles";
@@ -22,6 +23,7 @@ import TopicList from "./components/Notes/TopicList.jsx";
 import TopicResource from "./components/Notes/TopicResource.jsx";
 import Auth from "./components/home_page/Auth.jsx";
 import Chatbot from "./Chatbot.jsx";
+import ResultsPage from "./components/game_page/ResultsPage.jsx";
 
 export default function App() {
   const location = useLocation();
@@ -32,12 +34,12 @@ export default function App() {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         dispatch(loginSuccess(currentUser));
-      } else if (user !== null) { 
+      } else if (user !== null) {
         toast.success("Logout successful!", { duration: 1000 });
         dispatch(logout());
       }
     });
-  
+
     return () => unsubscribe();
   }, [dispatch, user]);
 
@@ -58,6 +60,7 @@ export default function App() {
     if (!user) {
       toast.error("Please log in first!", { duration: 1000 });
       return <Navigate to="/" replace />;
+      
     }
     return children;
   };
@@ -130,6 +133,14 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <QuizBattle />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/results"
+            element={
+              <ProtectedRoute>
+                <ResultsPage />
               </ProtectedRoute>
             }
           />
