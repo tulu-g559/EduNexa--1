@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginSuccess, loginFailure, logout } from "./redux/authSlice.js";
 import { toast } from "react-hot-toast";
 
-
 import Hero from "./components/home_page/hero";
 import Navbar from "./components/home_page/navbar";
 import { SparklesCore } from "./components/home_page/sparkles";
@@ -20,10 +19,11 @@ import UnderConstruction from "./components/404/UnderConstruction.jsx";
 import Classroom from "./Classroom.jsx";
 import SubjectList from "./components/Notes/SubjectList.jsx";
 import TopicList from "./components/Notes/TopicList.jsx";
-import TopicResource from "./components/Notes/TopicResource.jsx";
+// import TopicResource from "./components/Notes/TopicResource.jsx";
 import Auth from "./components/home_page/Auth.jsx";
 import Chatbot from "./Chatbot.jsx";
 import ResultsPage from "./components/game_page/ResultsPage.jsx";
+import GetHints from "./components/Notes/Get_hints.jsx"; // Import the new component
 
 export default function App() {
   const location = useLocation();
@@ -43,7 +43,6 @@ export default function App() {
     return () => unsubscribe();
   }, [dispatch, user]);
 
-  // Handle logout
   const handleLogout = async () => {
     try {
       await signOut(auth);
@@ -55,17 +54,14 @@ export default function App() {
     }
   };
 
-  // Protected Route Wrapper (Redirect if not logged in)
   const ProtectedRoute = ({ children }) => {
     if (!user) {
       toast.error("Please log in first!", { duration: 1000 });
       return <Navigate to="/" replace />;
-      
     }
     return children;
   };
 
-  // Prevent access to login/signup if already logged in
   const RedirectIfLoggedIn = ({ children }) => {
     if (user) {
       return <Navigate to="/" replace />;
@@ -88,7 +84,6 @@ export default function App() {
       </div>
 
       <div className="relative z-10">
-        {/* Show Navbar only if NOT on 404 page */}
         {location.pathname !== "/404" && (
           <Navbar user={user} onLogout={handleLogout} />
         )}
@@ -119,7 +114,7 @@ export default function App() {
             }
           />
 
-          {/* Protected Routes (User must be logged in) */}
+          {/* Protected Routes */}
           <Route
             path="/game"
             element={
@@ -192,14 +187,19 @@ export default function App() {
               </ProtectedRoute>
             }
           />
+
           <Route
-            path="/resources/:subject/:topic"
+            path="/get-hints"
             element={
               <ProtectedRoute>
-                <TopicResource />
+                <GetHints />
               </ProtectedRoute>
             }
           />
+
+
+
+
           <Route path="/under-construction" element={<UnderConstruction />} />
         </Routes>
       </div>

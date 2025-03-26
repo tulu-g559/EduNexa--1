@@ -7,7 +7,7 @@ import Button from "./button";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { signOut } from "firebase/auth";
-import { auth } from "../../firebase/firebase.js";
+import { auth } from "../../firebase/firebase.js";  
 
 export default function Navbar({ user, onLogout }) {
   const navigate = useNavigate();
@@ -48,7 +48,8 @@ export default function Navbar({ user, onLogout }) {
         <NavLink to="/Subjectlist">Let's Study</NavLink>
         <NavLink to="/classroom">Classroom</NavLink>
         <NavLink to="/chatbot">AI-Tutor</NavLink>
-        <NavLink to="/game">Gamification</NavLink>
+        <NavLink to="/game">Earn Rewards</NavLink>
+        <NavLink to="/get-hints">Solver</NavLink>
       </div>
 
       {/* Desktop Auth Buttons */}
@@ -83,7 +84,8 @@ export default function Navbar({ user, onLogout }) {
           <NavLink to="/Subjectlist" onClick={() => setIsOpen(false)}>Let's Study</NavLink>
           <NavLink to="/classroom" onClick={() => setIsOpen(false)}>Classroom</NavLink>
           <NavLink to="/chatbot" onClick={() => setIsOpen(false)}>AI-Tutor</NavLink>
-          <NavLink to="/game" onClick={() => setIsOpen(false)}>Gamification</NavLink>
+          <NavLink to="/game" onClick={() => setIsOpen(false)}>Earn Rewards</NavLink>
+          <NavLink to="/get-hints" onClick={() => setIsOpen(false)}>Solver</NavLink>
 
           {/* Mobile Auth Buttons */}
           {user ? (
