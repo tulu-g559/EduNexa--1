@@ -107,6 +107,24 @@ export default function QuizBattle() {
     fetchQuiz(); // Fetch the first question
   };
 
+
+  const handleQuizCompletion = (finalScore) => {
+    localStorage.setItem("quizScore", finalScore);
+    navigate("/results");
+  };
+
+  // Example function to simulate quiz completion
+  const completeQuiz = () => {
+    const finalScore = calculateScore(); // Replace with actual score calculation logic
+    handleQuizCompletion(finalScore);
+  };
+
+  // Example function to calculate score
+  const calculateScore = () => {
+    // Replace with actual score calculation logic
+    return 100; // Example score
+  };
+
   return (
     <div className="h-screen flex flex-col items-center justify-center bg-black text-white relative p-4">
       {/* Topic Selection Dropdown */}
@@ -198,6 +216,11 @@ export default function QuizBattle() {
       >
         End Quiz
       </button>
+
+      <div>
+      {/* Quiz content */}
+      <button onClick={completeQuiz}>Complete Quiz</button>
+    </div>
     </div>
   );
 }

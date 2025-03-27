@@ -1,16 +1,71 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle, Gift, X } from "lucide-react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
+import { db } from "../../firebase/firebase"; // Import Firestore database
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { useSelector } from "react-redux";
 
 export default function DailyChallenges() {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.auth.user); // ✅ Use Redux to get the user
+  const [rewardPoints, setRewardPoints] = useState(0);
+
+  // Fetch reward points from Firebase on component mount
+  useEffect(() => {
+    if (user) {
+      const fetchPoints = async () => {
+        try {
+          const userRef = doc(db, "users", user.uid);
+          const userSnap = await getDoc(userRef);
+
+          if (userSnap.exists()) {
+            setRewardPoints(userSnap.data().point || 0);
+          }
+        } catch (error) {
+          console.error("Error fetching reward points:", error);
+        }
+      };
+
+      fetchPoints();
+    }
+  }, [user]);
 
   const [challenges, setChallenges] = useState([
     { id: 1, title: "Answer 5 Questions", progress: 3, total: 5, completed: false },
     { id: 2, title: "Win 3 Rounds", progress: 3, total: 3, completed: true },
-    { id: 3, title: "Score 50 Points", progress: 25, total: 50, completed: false },
+
   ]);
+
+  // Function to redeem rewards
+  const handleRedeemRewards = async (rewardCost, rewardDescription) => {
+    if (rewardPoints >= rewardCost) {
+      try {
+        const newPoints = rewardPoints - rewardCost;
+        setRewardPoints(newPoints);
+
+        const userRef = doc(db, "users", user.uid);
+        await updateDoc(userRef, {
+          point: newPoints,
+        });
+
+        if (rewardDescription === "10 free chats") {
+          const userSnap = await getDoc(userRef);
+          const currentLimit = userSnap.data().limit || 0;
+          await updateDoc(userRef, {
+            limit: currentLimit + 10,
+          });
+        }
+
+        alert(`Reward redeemed successfully! You have received: ${rewardDescription}`);
+      } catch (error) {
+        console.error("Error updating reward points:", error);
+        alert("Failed to redeem rewards. Please try again.");
+      }
+    } else {
+      alert("Not enough reward points to redeem the reward.");
+    }
+  };
 
   return (
     <div className="h-screen w-full flex flex-col items-center justify-center bg-black text-white overflow-y-auto relative">
@@ -18,6 +73,12 @@ export default function DailyChallenges() {
       <button onClick={() => navigate(-1)} className="absolute top-5 left-5 p-2 bg-yellow-500 hover:bg-yellow-400 rounded-full transition">
         <X className="w-6 h-6 text-black" />
       </button>
+
+      {/* Total Reward Points in Top Right Corner */}
+      <div className="absolute top-5 right-5 bg-gray-800 p-2 rounded-lg text-center">
+        <h2 className="text-lg font-semibold">Total Reward Points</h2>
+        <p className="text-2xl font-bold text-green-400">{rewardPoints}</p>
+      </div>
 
       {/* Title */}
       <motion.h1 
@@ -63,10 +124,22 @@ export default function DailyChallenges() {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6 }}
-        className="mt-6 bg-yellow-500 p-4 rounded-lg flex items-center space-x-3 text-black font-bold shadow-lg"
+        className="mt-6 bg-yellow-500 p-4 rounded-lg flex flex-col items-center space-y-3 text-black font-bold shadow-lg"
       >
         <Gift className="w-6 h-6" />
-        <span>Complete all challenges to earn rewards!</span>
+        <span>Redeem Your Points for Rewards!</span>
+        <button
+          onClick={() => handleRedeemRewards(10, "10 free chats")}
+          className="p-2 bg-green-500 rounded-lg hover:bg-green-400 transition"
+        >
+          Redeem 10 Points for 10 Free Chats
+        </button>
+        <button
+          onClick={() => handleRedeemRewards(20, "access to study resources")}
+          className="p-2 bg-green-500 rounded-lg hover:bg-green-400 transition"
+        >
+          Redeem 20 Points for Access to Study Resources
+        </button>
       </motion.div>
     </div>
   );
