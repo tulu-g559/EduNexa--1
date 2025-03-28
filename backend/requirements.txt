@@ -5,3 +5,4 @@ firebase-admin
 google-generativeai
 python-dotenv
 PyMuPDF
+gunicorn 
