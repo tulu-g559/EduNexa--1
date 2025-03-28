@@ -21,7 +21,6 @@ export default function TopicList() {
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-black to-gray-900 text-white p-8 flex flex-col items-center">
-      
       {/* Back Button */}
       <button
         onClick={() => navigate(-1)}
@@ -53,7 +52,7 @@ export default function TopicList() {
             <motion.div
               key={index}
               className="bg-gray-800 p-5 rounded-xl shadow-lg cursor-pointer flex items-center gap-4 transition-transform transform hover:scale-105 hover:bg-purple-600"
-              onClick={() => navigate(`/resources/${subject}/${topic.toLowerCase()}`)}
+              onClick={() => navigate(`/resources/${topic.toLowerCase()}`)}
               whileHover={{ scale: 1.05 }}
             >
               <FaBookOpen className="text-3xl text-purple-300" />

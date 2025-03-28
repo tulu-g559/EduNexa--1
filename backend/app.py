@@ -127,7 +127,7 @@ SYSTEM_PROMPT_AI = """
     - Use previous interactions to gauge the student's understanding level and adjust explanations accordingly
     - If context is unclear or missing, politely ask for clarification
 
-    Remember: You are a virtual tutor designed to make learning fun, effective, and personalized to the needs of each student. Use the conversation history wisely to provide more meaningful and connected learning experiences.
+    Remember: You are a virtual tutor designed to make learning fun, effective, and personalized to the needs of each student. Use the conversation history wisely to provide more meaningful and connected learning experiences. Never introduce yourself or say hi more than once or if asked to.
     """
 
 # prompt for quiz generation
@@ -306,6 +306,62 @@ Please provide a response considering the above context if relevant."""
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+
+#### AI-POWERED QUIZ GENERATION ###
+# filepath: [app.py](http://_vscodecontentref_/0)
+@app.route("/game/generate_quiz", methods=["POST"])
+def generate_quiz():
+    try:
+        print("🔹 API hit!")  # Debugging
+        data = request.get_json()
+        print("🔹 Received data:", data)  # Debugging
+
+        if not data:
+            return jsonify({"error": "Missing JSON payload"}), 400
+
+        valid_topics = ["Coding", "Algorithm", "Physics", "Maths"]
+        topic = data.get("topic", "General Knowledge")
+
+        # Ensure the topic is valid
+        if topic not in valid_topics:
+            topic = "Computer Science"
+
+        prompt = f"""
+    Generate a unique multiple-choice quiz question on the topic '{topic}' with exactly 4 answer options. 
+    Ensure that the question is **not repetitive** and is different from commonly asked questions.
+
+    The response should be in valid JSON format:
+    {{
+        "question": "Your question?",
+        "options": ["Option 1", "Option 2", "Option 3", "Option 4"],
+        "correct_answer": "Correct option"
+    }}
+"""
+
+
+        model = genai.GenerativeModel("gemini-1.5-flash")
+        response = model.generate_content(prompt)
+
+        print("\n🔹 RAW GEMINI RESPONSE:\n", response.text)  # Debugging
+
+        # ✅ Clean the response to remove backticks and extra formatting
+        cleaned_response = response.text.strip().strip("```").strip("json").strip()
+        print("\n🔹 CLEANED RESPONSE:\n", cleaned_response)  # Debugging
+
+        # ✅ Parse the cleaned response as JSON
+        quiz_json = json.loads(cleaned_response)
+
+        # ✅ Return the parsed quiz question
+        return jsonify({"questions": [quiz_json]})
+
+    except json.JSONDecodeError as e:
+        print("🔴 JSON Decode Error:", e)  # Debugging
+        return jsonify({"error": "AI response is not valid JSON", "raw_response": response.text}), 500
+    except Exception as e:
+        print("🔴 Unexpected Error:", e)  # Debugging
+        return jsonify({"error": str(e)}), 500
+    
 
 # PDF upload endpoint (from web_scrapper.py)
 @app.route("/upload", methods=["POST"])

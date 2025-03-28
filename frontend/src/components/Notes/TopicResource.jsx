@@ -6,18 +6,18 @@ import { motion } from "framer-motion";
 const resources = {
   algebra: {
     pdf: "/assets/algebra_notes.pdf",
-    youtube: "https://youtube.com/algebra_tutorials",
+    youtube: "https://youtu.be/LwCRRUa8yTU?si=GV7m3xjdKpm1bnmd",
     article: "https://example.com/algebra_article",
   },
   calculus: {
-    pdf: "/assets/algebra_notes.pdf",
-    youtube: "https://youtube.com/algebra_tutorials",
-    article: "https://example.com/algebra_article",
+    pdf: "/assets/calculus_notes.pdf",
+    youtube: "https://youtube.com/calculus_tutorials",
+    article: "https://example.com/calculus_article",
   },
   geometry: {
-    pdf: "/assets/algebra_notes.pdf",
-    youtube: "https://youtube.com/algebra_tutorials",
-    article: "https://example.com/algebra_article",
+    pdf: "/assets/geometry_notes.pdf",
+    youtube: "https://youtube.com/geometry_tutorials",
+    article: "https://example.com/geometry_article",
   },
   mechanics: {
     pdf: "/assets/mechanics_notes.pdf",
@@ -25,14 +25,14 @@ const resources = {
     article: "https://example.com/mechanics_article",
   },
   thermodynamics: {
-    pdf: "/assets/algebra_notes.pdf",
-    youtube: "https://youtube.com/algebra_tutorials",
-    article: "https://example.com/algebra_article",
+    pdf: "/assets/thermodynamics_notes.pdf",
+    youtube: "https://youtube.com/thermodynamics_tutorials",
+    article: "https://example.com/thermodynamics_article",
   },
   electromagnetism: {
-    pdf: "/assets/algebra_notes.pdf",
-    youtube: "https://youtube.com/algebra_tutorials",
-    article: "https://example.com/algebra_article",
+    pdf: "/assets/electromagnetism_notes.pdf",
+    youtube: "https://youtube.com/electromagnetism_tutorials",
+    article: "https://example.com/electromagnetism_article",
   },
   "organic chemistry": {
     pdf: "/assets/organic_notes.pdf",
@@ -40,14 +40,14 @@ const resources = {
     article: "https://example.com/organic_article",
   },
   "inorganic chemistry": {
-    pdf: "/assets/algebra_notes.pdf",
-    youtube: "https://youtube.com/algebra_tutorials",
-    article: "https://example.com/algebra_article",
+    pdf: "/assets/inorganic_notes.pdf",
+    youtube: "https://youtube.com/inorganic_tutorials",
+    article: "https://example.com/inorganic_article",
   },
   "physical chemistry": {
-    pdf: "/assets/algebra_notes.pdf",
-    youtube: "https://youtube.com/algebra_tutorials",
-    article: "https://example.com/algebra_article",
+    pdf: "/assets/physical_notes.pdf",
+    youtube: "https://youtube.com/physical_tutorials",
+    article: "https://example.com/physical_article",
   },
 };
 
@@ -58,7 +58,6 @@ export default function TopicResource() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black text-white p-8 flex flex-col items-center">
-      
       {/* Back Button */}
       <motion.button
         className="flex items-center gap-2 bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-lg shadow-lg mb-6 transition transform hover:scale-105"

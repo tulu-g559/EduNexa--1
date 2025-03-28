@@ -89,7 +89,7 @@ export default function About() {
           </motion.div>
 
           {/* Team Member 3 */}
-          <motion.div
+          {/* <motion.div
             whileHover={{ scale: 1.1 }}
             transition={{ duration: 0.3 }}
             className="bg-gray-900 p-6 rounded-lg shadow-lg text-center w-64 hover:shadow-pink-500/50 transition-all"
@@ -101,7 +101,7 @@ export default function About() {
             />
             <h3 className="text-lg font-bold">Archak Khandayit</h3>
             <p className="text-gray-400">Full-Stack Developer</p>
-          </motion.div>
+          </motion.div> */}
         </div>
       </section>
 

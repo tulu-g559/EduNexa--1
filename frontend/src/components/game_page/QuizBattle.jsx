@@ -11,7 +11,7 @@ export default function QuizBattle() {
   const [selectedTopic, setSelectedTopic] = useState("Coding");
   const [score, setScore] = useState(0); // Single player's score
   const [selectedAnswer, setSelectedAnswer] = useState(null);
-  const [timeLeft, setTimeLeft] = useState(10);
+  const [timeLeft, setTimeLeft] = useState(20);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
   const [isAnsweringAllowed, setIsAnsweringAllowed] = useState(true);
   const [timeUpMessage, setTimeUpMessage] = useState("");
@@ -28,16 +28,16 @@ export default function QuizBattle() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ topic: selectedTopic }),
       });
-
+  
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-
+  
       const data = await response.json();
-      if (data && data.question) {
-        setQuestion(data); // Set the fetched question
+      if (data && data.questions && data.questions.length > 0) {
+        setQuestion(data.questions[0]); // Access the first question in the array
         setIsTimerRunning(true); // Start the timer
         setIsAnsweringAllowed(true); // Allow answering
         setTimeUpMessage(""); // Reset the timeUpMessage when a new question is loaded
-        setTimeLeft(10); // Reset the timer to 10 seconds for each new question
+        setTimeLeft(20); // Reset the timer to 10 seconds for each new question
       } else {
         console.error("Error: No question received", data);
       }
@@ -94,7 +94,7 @@ export default function QuizBattle() {
     setIsAnsweringAllowed(false); // Disable answering after selection
     setTimeout(() => {
       setSelectedAnswer(null); // Reset the selected answer
-      setTimeLeft(10); // Reset timer for the next question
+      setTimeLeft(20); // Reset timer for the next question
       setIsTimerRunning(false); // Reset the timer
       setQuestion(null); // Clear the current question
       setQuestionIndex((prev) => prev + 1); // Increment question index
@@ -199,7 +199,7 @@ export default function QuizBattle() {
                     ? option === question.correct_answer
                       ? "bg-green-500 text-black"
                       : "bg-red-500 text-black"
-                    : "bg-gray-700 text-black"
+                    : "bg-gray-700 text-white"
                 }`}
               >
                 {option}

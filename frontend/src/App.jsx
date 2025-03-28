@@ -19,7 +19,7 @@ import UnderConstruction from "./components/404/UnderConstruction.jsx";
 import Classroom from "./Classroom.jsx";
 import SubjectList from "./components/Notes/SubjectList.jsx";
 import TopicList from "./components/Notes/TopicList.jsx";
-// import TopicResource from "./components/Notes/TopicResource.jsx";
+import TopicResource from "./components/Notes/TopicResource.jsx";
 import Auth from "./components/home_page/Auth.jsx";
 import Chatbot from "./Chatbot.jsx";
 import ResultsPage from "./components/game_page/ResultsPage.jsx";
@@ -184,6 +184,14 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <TopicList />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/resources/:topic"
+            element={
+              <ProtectedRoute>
+                <TopicResource />
               </ProtectedRoute>
             }
           />
