@@ -14,6 +14,11 @@ GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 # ✅ Configure Gemini API at the start
 genai.configure(api_key=GEMINI_API_KEY)
 
+
+
+
+
+# Get JSON from environment variable
 firebase_config_json = os.getenv("FIREBASE_CONFIG")
 
 if firebase_config_json:
@@ -26,11 +31,27 @@ if firebase_config_json:
 
     print("✅ firebase.json recreated successfully.")
 
+    # ✅ Initialize Firebase Admin SDK using the generated file
+    cred = credentials.Certificate(firebase_json_path)
+    firebase_admin.initialize_app(cred)
+
+    # ✅ Get Firestore Client
+    db = firestore.client()
+
+    print("✅ Firebase initialized successfully!")
+
+else:
+    print("❌ ERROR: FIREBASE_CONFIG environment variable is missing!")
+
+
+
+
+
 
 # ✅ Initialize Firebase Admin SDK
-cred = credentials.Certificate("firebase.json")  # 🔥 Replace with your Firebase key file
-firebase_admin.initialize_app(cred)
-db = firestore.client()
+# cred = credentials.Certificate("firebase.json")  # 🔥 Replace with your Firebase key file
+# firebase_admin.initialize_app(cred)
+# db = firestore.client()
 
 # app = Flask(__name__, static_folder='../frontend/dist', static_url_path='/')
 app = Flask(__name__, static_folder='../frontend/dist/assets', template_folder='../frontend/dist')
