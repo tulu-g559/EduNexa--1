@@ -19,7 +19,8 @@ cred = credentials.Certificate("firebase.json")  # 🔥 Replace with your Fireba
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
-app = Flask(__name__, static_folder='../frontend/dist', static_url_path='/')
+# app = Flask(__name__, static_folder='../frontend/dist', static_url_path='/')
+app = Flask(__name__, static_folder='../frontend/dist/assets', template_folder='../frontend/dist')
 # app = Flask(__name__)
 CORS(app)  
 

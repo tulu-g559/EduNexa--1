@@ -1,0 +1,1 @@
+web: gunicorn --chdir backend wsgi:app
