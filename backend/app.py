@@ -14,22 +14,8 @@ GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 # ✅ Configure Gemini API at the start
 genai.configure(api_key=GEMINI_API_KEY)
 
-
-
-# # ✅ Initialize Firebase Admin SDK
-# cred = credentials.Certificate("firebase.json")  # 🔥 Replace with your Firebase key file
-
-# ✅ Load Firebase credentials from environment variable
-firebase_json = os.getenv("FIREBASE_JSON")  # 🔥 Fetch env variable
-if not firebase_json:
-    raise ValueError("FIREBASE_JSON environment variable is missing!")
-# ✅ Convert JSON string to a Python dictionary
-cred_dict = json.loads(firebase_json)
-
-
-
-# ✅ Initialize Firebase Admin SDK with dictionary instead of a file
-cred = credentials.Certificate(cred_dict)
+# ✅ Initialize Firebase Admin SDK
+cred = credentials.Certificate("firebase.json")  # 🔥 Replace with your Firebase key file
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
