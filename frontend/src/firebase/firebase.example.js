@@ -6,6 +6,8 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+//Instruction: Create a file named firebase.js in path "/frontend/src/firebase/firebase.js"
+//This is just an example
 const firebaseConfig = {
     //paste firebaseconfig
 };
