@@ -1,7 +1,34 @@
 <!doctype html>
 <html lang="en">
   <head>
-                <!-- Standard Favicon -->
+    <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+    <df-messenger
+    location="us-central1"
+    project-id="investo-452105"
+    agent-id="5d179bb0-c00e-497e-9940-2c41aa7231cd"
+    language-code="en"
+    max-query-length="-1">
+    <df-messenger-chat-bubble
+    chat-title="NexaBot">
+  </df-messenger-chat-bubble>
+</df-messenger>
+<style>
+  df-messenger {
+    z-index: 999;
+    position: fixed;
+    --df-messenger-font-color: #000000;
+    --df-messenger-font-family: Google Sans;
+    --df-messenger-chat-background: #000000; /* Light Purple */
+    --df-messenger-message-user-background: #8e24aa; /* Darker Purple */
+    --df-messenger-message-bot-background: #8549ce; /* Soft Purple */
+    --df-messenger-send-icon: #9a1b69; /* Deep Purple */
+    --df-messenger-input-placeholder-font-color: #4a148c;
+    bottom: 16px;
+    right: 16px;
+}
+
+</style>
+<!-- Standard Favicon -->
 <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
 <link rel="icon" type="image/x-icon" href="images/favicon.ico">
@@ -13,14 +40,15 @@
 <link rel="icon" type="image/png" sizes="192x192" href="images/android-chrome-192x192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="images/android-chrome-512x512.png">
 
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EduNexa</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-    <script src="https://meet.jit.si/external_api.js"></script>
-  </body>
+<meta charset="UTF-8" />
+<link rel="icon" type="image/svg+xml" href="/vite.svg" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>EduNexa</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+  <script src="https://meet.jit.si/external_api.js"></script>
+  <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+</body>
 </html>

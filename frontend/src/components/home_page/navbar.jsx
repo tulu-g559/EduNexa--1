@@ -37,8 +37,7 @@ export default function Navbar({ user, onLogout }) {
           alt="EduNexa Logo"
           className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 transition-all"
         />
-        <span className="text-white font-medium text-lg sm:text-xl">Edu</span>
-        <span className="text-purple-500 font-medium text-lg sm:text-xl">Nexa</span>
+        <span className="text-white font-medium text-lg sm:text-xl">Edu</span><span className="text-purple-500 font-medium text-lg sm:text-xl">Nexa</span>
       </Link>
 
       {/* Desktop Menu */}
