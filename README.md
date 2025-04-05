@@ -73,7 +73,7 @@ EduNexa is an **AI-powered learning platform** designed to **revolutionize educa
 - ![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white) **Flask**  
 - ![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black) **Firebase** – Authentication & Datastore  
 - ![AI](https://img.shields.io/badge/AI%20Models-764ABC?style=for-the-badge&logo=ai&logoColor=white) **AI/ML Models**  
-- ![Gemini API](https://img.shields.io/badge/Gemini%20API-blueviolet?style=for-the-badge&logo=google) **Gemini-1.5-Flash API** – For AI tutoring & Nexa Bot  
+- ![Gemini API](https://img.shields.io/badge/Gemini%20API-blueviolet?style=for-the-badge&logo=google) **Gemini-2.0-Flash API** – For AI tutoring  
 - ![GCP](https://img.shields.io/badge/GCP%20-red?style=for-the-badge&logo) **Vertex AI Conversational Agents**
 ---
 
