@@ -15,9 +15,6 @@ GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 genai.configure(api_key=GEMINI_API_KEY)
 
 
-
-
-
 # Get JSON from environment variable
 # firebase_config_json = os.getenv("FIREBASE_CONFIG")
 
@@ -42,10 +39,6 @@ genai.configure(api_key=GEMINI_API_KEY)
 
 # else:
 #     print("❌ ERROR: FIREBASE_CONFIG environment variable is missing!")
-
-
-
-
 
 
 # ✅ Initialize Firebase Admin SDK
