@@ -66,7 +66,8 @@ EduNexa is an **AI-powered learning platform** designed to **revolutionize educa
 ### 🎨 Frontend  
 - ![React](https://img.shields.io/badge/ReactJS-61DAFB?style=for-the-badge&logo=react&logoColor=white) **ReactJS (Vite)**  
 - ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white) **Tailwind CSS**  
-- ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white) **Figma** – UI/UX prototyping  
+- ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white) **Figma** – UI/UX prototyping   
+- ![React](https://img.shields.io/badge/Jitsi-61DAFB?style=for-the-badge&logo=jitsi&logoColor=white) **Jitsi Meet SDK**
 
 ### 🧠 Backend & AI  
 - ![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white) **Flask**  
@@ -87,7 +88,7 @@ EduNexa is an **AI-powered learning platform** designed to **revolutionize educa
 
 | **Home Page** | **AI Tutor** | **Gamification** |
 |:------------:|:------------:|:------------:|
-| ![Home](https://github.com/user-attachments/assets/0d041941-ffde-43d5-8a83-4d36f5a6bc84) | ![AI Tutor](https://github.com/user-attachments/assets/7ead4397-a176-427d-884b-f0089a40eec1) | ![Gamification](https://github.com/user-attachments/assets/e3234742-3a0c-4e26-91e8-28a2581e31ae) |
+| ![Home](https://github.com/user-attachments/assets/3877c8eb-6b52-48cd-a750-e92e52fc304d)| ![image](https://github.com/user-attachments/assets/001007aa-fe55-44d2-8b61-7f1f683839ad)| ![image](https://github.com/user-attachments/assets/df3d3e5a-b785-4667-ac64-dd4e14653ee4)|
 
 ## ⚙️ How It Works  
 1️⃣ **User Registration & Login –** Sign up and set learning preferences.  
